@@ -11,6 +11,8 @@ let g:ncm2_jira#source = get(g:, 'ncm2_jira#jira_source', {
             \ 'name': 'jira',
             \ 'priority': 9,
             \ 'mark': 'jira',
+            \ 'sorter': 'custom',
+            \ 'filter': 'fuzzybydate',
             \ 'word_pattern': 'JI\w*',
             \ 'complete_pattern': 'JI\w*',
             \ 'matcher': {'key': 'custom'},
