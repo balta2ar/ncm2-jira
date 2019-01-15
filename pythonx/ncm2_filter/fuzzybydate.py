@@ -1,5 +1,6 @@
-from operator import itemgetter
 from datetime import datetime
+from operator import itemgetter
+
 
 def log(msg):
     now = str(datetime.now())
@@ -19,4 +20,3 @@ def Filter(**kargs):
             return res
         return matches
     return filt
-

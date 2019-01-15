@@ -3,6 +3,7 @@ import sys
 
 def log(msg):
     from datetime import datetime
+
     now = str(datetime.now())
     with open('/tmp/ncm2-jira.log', 'a') as file_:
         file_.write('%s %s\n' % (now, msg))
@@ -39,4 +40,3 @@ def Sorter(**kargs):
         return matches
 
     return sort
-
