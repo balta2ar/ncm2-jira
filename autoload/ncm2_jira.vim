@@ -14,7 +14,7 @@ let g:ncm2_jira#source = get(g:, 'ncm2_jira#jira_source', {
             \ 'sorter': 'custom',
             \ 'filter': 'fuzzybydate',
             \ 'word_pattern': 'JI\w*',
-            \ 'complete_pattern': 'JI\w*',
+            \ 'complete_pattern': 'JI',
             \ 'matcher': {'key': 'custom'},
             \ 'on_complete': 'ncm2_jira#on_complete',
             \ 'on_warmup': 'ncm2_jira#on_warmup'

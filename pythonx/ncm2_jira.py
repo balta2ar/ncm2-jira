@@ -10,6 +10,7 @@ from ncm2 import Ncm2Source, getLogger
 from datetime import datetime
 import io
 from operator import itemgetter
+from os.path import expanduser, expandvars
 
 logger = getLogger(__name__)
 
@@ -26,7 +27,7 @@ def load_lines(filename):
     # 2 - status
     # 3 - owner
     # 4 - last updated
-    # filename = expanduser(expandvars(filename))
+    filename = expanduser(expandvars(filename))
     data = """OFFICE_IT-1257	Fix hg hook in cs/rnd-tests repo	Resolved	user1	2018-02-27
 IT_SUPPORT-236	Configure certificates on https://someurl.company.net	Resolved	user2	2018-03-02
 IT_DEV-319	Hypertext links to Crucible reviews in RT comments	On Hold	<NA>	2018-03-12
@@ -36,10 +37,10 @@ ACCESS-6092	Please create bot user for SecretProject <-> TopSecretProject intera
 ACCESS-2432	wrong permissions in test project. user1	Resolved	user1	2018-02-27"""
 
     get_subset = itemgetter(0, 1, 4)
-    #with open(filename) as file_:
-        # lines = [get_subset(line.strip().split('\t')) for line in file_.readlines()]
+    with open(filename) as file_:
+        lines = [get_subset(line.strip().split('\t')) for line in file_.readlines()]
     # with io.StringIO(data) as file_:
-    lines = [get_subset(line.strip().split('\t')) for line in data.splitlines()]
+    # lines = [get_subset(line.strip().split('\t')) for line in data.splitlines()]
     log('load_lines: #: %s' % len(lines))
     return lines
 
@@ -49,7 +50,8 @@ def get_jira_candidates(candidates, current_prefix, matcher_key):
     ticket_formatter = '%' + str(max_ticket_len) + 's'
     return [{'word': ticket,
              'abbr': ticket_formatter % ticket + ' ' + title,
-             matcher_key: current_prefix + title,
+             #matcher_key: current_prefix + title,
+             matcher_key: 'JI' + title,
              'last_updated': last_updated,
              }
             # matcher_key: current_prefix + title, }
